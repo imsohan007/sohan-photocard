@@ -1,311 +1,145 @@
 <!DOCTYPE html>
-<html lang="bn">
-<!-- Setup: paste your Apps Script Web App URL into SCRIPT_URL at the bottom. Messages go to the "Messages" sheet.
-     Photo: put your photo next to this file as photo.jpg (falls back to the Google Drive photo).
-     News: uses the free rss2json service; works on your own hosting (GitHub Pages, Netlify, domain). -->
-<head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<meta name="color-scheme" content="light dark">
-<title>Sohan Ali Sikder | Inventory and Operations Executive</title>
-<meta name="description" content="Sohan Ali Sikder: দুই বছরের ইনভেন্টরি, স্টোর ও টিম সমন্বয়ের অভিজ্ঞতা, আপন টেক লিমিটেড। গাজীপুর, বাংলাদেশ।">
-<meta property="og:type" content="website">
-<meta property="og:title" content="Sohan Ali Sikder | Inventory and Operations Executive">
-<meta property="og:description" content="ইনভেন্টরি, স্টক ও অপারেশন্স পদের জন্য প্রস্তুত। গাজীপুর, বাংলাদেশ।">
-<meta property="og:image" content="https://drive.google.com/thumbnail?id=1_4RBqCFg6kaPgEC061rJEm5G8-FrkP91&sz=w1000">
-<meta name="twitter:card" content="summary">
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='22' fill='%235B5BF0'/%3E%3Ctext x='50' y='66' font-size='46' font-family='Arial' font-weight='700' text-anchor='middle' fill='white'%3ESAS%3C/text%3E%3C/svg%3E">
-<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@500;700;800&family=Hind+Siliguri:wght@400;500;600;700&display=swap" rel="stylesheet">
+<html lang="bn"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>ফটোকার্ড স্টুডিও</title>
+<link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;500;700&family=Noto+Serif+Bengali:wght@800&display=swap" rel="stylesheet">
 <style>
-*{box-sizing:border-box;margin:0;padding:0}
-:root{--bg:#F5F6FA;--card:#fff;--ink:#0E1424;--ink2:#2C3447;--mut:#5C6577;--ln:#E3E6EF;--chip:#ECEBFF;--a:#5B5BF0;--b:#13C2A3;--nv:#0B1220;--sh:0 8px 28px rgba(20,30,70,.07);--d:"Plus Jakarta Sans","Hind Siliguri",system-ui,sans-serif}
-@media(prefers-color-scheme:dark){:root{--bg:#090E1B;--card:#131A2D;--ink:#E8ECF6;--ink2:#C3CBDD;--mut:#9AA6BF;--ln:#26304A;--chip:#23284F;--a:#8585FF;--sh:none}}
-html{scroll-behavior:smooth;scroll-padding-top:120px}
-body{font:400 1.05rem/1.75 "Hind Siliguri","Plus Jakarta Sans",system-ui,sans-serif;background:var(--bg);color:var(--ink);overflow-x:hidden}
-h1,h2,h3{font-family:var(--d);line-height:1.2}
-html[lang=en] h1{letter-spacing:-.035em}html[lang=en] h2{letter-spacing:-.02em}
-a{color:inherit}button{font:inherit;color:inherit;cursor:pointer}
-:focus-visible{outline:3px solid var(--a);outline-offset:3px}
-.wrap{max-width:1040px;margin:0 auto;padding:0 20px}
-section{padding:80px 0 0}
-h2{font-size:clamp(1.7rem,4.6vw,2.5rem);font-weight:800;margin-bottom:26px}
-h2:after{content:"";display:block;width:48px;height:4px;border-radius:4px;margin-top:10px;background:linear-gradient(90deg,var(--a),var(--b))}
-/* top bars */
-.dbar{position:fixed;top:0;left:0;right:0;z-index:60;display:flex;flex-wrap:wrap;justify-content:center;gap:0 16px;padding:calc(5px + env(safe-area-inset-top,0px)) 12px 5px;background:#070C18;border-bottom:1px solid rgba(255,255,255,.12);font:600 .78rem/1.5 "Hind Siliguri",sans-serif;color:#D5DBEA}
-.dbar .bd{color:#FFD58A}.dbar .hj{color:#7FF0D8}.dbar .ck{color:#fff;font-weight:700;font-variant-numeric:tabular-nums}.dbar span:empty{display:none}
-.top{position:fixed;top:calc(var(--bh,32px) + 8px);left:50%;transform:translateX(-50%);z-index:50;max-width:calc(100% - 20px);display:flex;gap:4px;align-items:center;padding:5px;border-radius:99px;background:rgba(11,18,32,.82);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border:1px solid rgba(255,255,255,.14)}
-.nav{display:flex;gap:2px;overflow-x:auto;scrollbar-width:none}.nav::-webkit-scrollbar{display:none}
-.nav a{font-size:.88rem;font-weight:500;text-decoration:none;padding:6px 12px;border-radius:99px;white-space:nowrap;color:#D5DBEA}
-.nav a:hover{background:rgba(255,255,255,.16);color:#fff}
-.lg{border:0;border-radius:99px;padding:6px 13px;font-weight:700;font-size:.82rem;background:linear-gradient(100deg,var(--a),var(--b));color:#fff}
-/* hero */
-.hero{background:var(--nv);color:#fff;padding:150px 0 90px;position:relative;overflow:hidden;border-radius:0 0 40px 40px;background-image:radial-gradient(520px 380px at 0% 0%,rgba(91,91,240,.45),transparent 70%),radial-gradient(460px 340px at 100% 100%,rgba(19,194,163,.32),transparent 70%)}
-.hero .wrap{display:grid;grid-template-columns:1.3fr 1fr;gap:36px;align-items:center}
-.pill{display:inline-flex;gap:10px;align-items:center;padding:6px 15px;border-radius:99px;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.2);font-size:.9rem}
-.pill:before{content:"";width:9px;height:9px;border-radius:50%;background:var(--b)}
-h1{font-size:clamp(2.6rem,8vw,5rem);font-weight:800;margin:18px 0 8px;color:#fff}
-.role{font:700 clamp(1.1rem,2.6vw,1.45rem) var(--d);color:#7FF0D8}
-.sum{max-width:32em;margin:14px 0 24px;color:#C3CCE0}
-.btn{display:inline-flex;align-items:center;justify-content:center;min-height:50px;padding:11px 24px;border-radius:99px;font-weight:700;text-decoration:none;border:1.5px solid var(--ln);background:var(--card);margin:0 10px 12px 0;transition:transform .2s}
-.btn:hover{transform:translateY(-2px)}
-.btn.p{background:linear-gradient(100deg,var(--a),var(--b));color:#fff;border:0}.btn[disabled]{opacity:.55}
-.hero .btn:not(.p){background:rgba(255,255,255,.1);color:#fff;border-color:rgba(255,255,255,.3)}
-.pt{position:relative;width:min(100%,320px);aspect-ratio:1;margin:0 auto}
-.pt:before{content:"";position:absolute;inset:-14px;border-radius:50%;border:2px dashed rgba(127,240,216,.55)}
-.pt .ph{position:absolute;inset:0;border-radius:50%;overflow:hidden;background:linear-gradient(145deg,var(--a),#1B2A6B);display:grid;place-items:center;font:800 3.6rem var(--d);border:6px solid rgba(255,255,255,.15)}
-.pt img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 22%}
-.fc{position:absolute;padding:8px 15px;border-radius:14px;background:#fff;color:#0E1424;font:700 .86rem var(--d);box-shadow:0 10px 24px rgba(0,0,0,.25);white-space:nowrap}
-.fc:nth-of-type(1){left:-22px;top:12%}.fc:nth-of-type(2){right:-24px;top:46%}.fc:nth-of-type(3){left:6%;bottom:-8px}
-/* cards */
-.card,.st,.job,.ed div,.panel,.why>div,.nw{background:var(--card);border:1px solid var(--ln);border-radius:22px;box-shadow:var(--sh)}
-.about{display:grid;grid-template-columns:1.5fr 1fr;gap:20px}
-.big{font:600 clamp(1.1rem,2.3vw,1.4rem)/1.65 var(--d);padding:28px}
-.stats{display:grid;gap:12px}
-.st{padding:16px 22px}
-.st b{font:800 1.8rem/1.2 var(--d);display:block;background:linear-gradient(100deg,var(--a),var(--b));-webkit-background-clip:text;background-clip:text;color:transparent}
-.st small{color:var(--mut)}
-.why{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-top:20px}
-.why>div{padding:20px}
-.why i{display:grid;place-items:center;width:36px;height:36px;border-radius:10px;background:linear-gradient(135deg,var(--a),var(--b));color:#fff;font:800 1rem var(--d);font-style:normal;margin-bottom:10px}
-.why h3{font-size:1.05rem;margin-bottom:4px}.why p{font-size:.92rem;color:var(--mut);line-height:1.55}
-/* timeline */
-.jobs{position:relative;display:grid;gap:20px;padding-left:32px}
-.jobs:before{content:"";position:absolute;left:8px;top:8px;bottom:8px;width:3px;border-radius:3px;background:linear-gradient(var(--a),var(--b))}
-.job{padding:24px 26px;position:relative}
-.job:before{content:"";position:absolute;left:-32px;top:30px;width:19px;height:19px;border-radius:50%;background:var(--a);border:4px solid var(--bg)}
-.job h3{font-size:1.3rem}.m{display:flex;gap:8px;flex-wrap:wrap;margin:8px 0 10px}.m span{background:var(--chip);color:var(--a);font-weight:600;font-size:.85rem;padding:2px 13px;border-radius:99px}
-.job li{list-style:none;padding:5px 0 5px 22px;position:relative;font-size:.98rem;color:var(--ink2)}.job li:before{content:"";position:absolute;left:2px;top:15px;width:8px;height:8px;border-radius:50%;background:var(--b)}
-/* skills */
-.dark{background:var(--nv);color:#fff;padding:70px 0;margin-top:80px;border-radius:40px}
-.dark h2{color:#fff}
-.sk{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
-.sk>div{padding:22px;border-radius:20px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.12)}
-.sk h3{font-size:1.1rem;margin-bottom:14px;color:#7FF0D8}
-.chips{display:flex;flex-wrap:wrap;gap:8px}.chips span{padding:5px 14px;border-radius:99px;border:1px solid rgba(255,255,255,.25);font-size:.92rem}
-.lv{display:flex;justify-content:space-between;align-items:center;gap:10px;padding:9px 0;border-bottom:1px solid rgba(255,255,255,.1);font-size:.95rem}.lv:last-child{border:0}
-.lv em{font-style:normal;font-size:.8rem;font-weight:600;padding:2px 12px;border-radius:99px;background:rgba(19,194,163,.2);color:#7FF0D8;white-space:nowrap}
-.lv em.lo{background:rgba(255,255,255,.1);color:#C3CCE0}
-.ed{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
-.ed div{padding:24px}
-.ed h3{font-size:1.15rem}.ed p{color:var(--mut);font-size:.96rem;margin-top:4px}.ed b{display:block;margin-top:10px;color:var(--a)}
-/* contact + form */
-.ct{background:var(--nv);color:#fff;border-radius:34px;padding:40px;display:grid;grid-template-columns:1fr 1fr;gap:28px;background-image:radial-gradient(420px 300px at 100% 0%,rgba(91,91,240,.4),transparent 70%)}
-.ct h2{font-size:clamp(1.6rem,4vw,2.3rem);margin-bottom:12px;color:#fff}.ct h2:after{display:none}.ct p{color:#C3CCE0}
-.lk{display:flex;gap:14px;align-items:center;padding:12px 16px;margin-bottom:10px;border-radius:16px;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.14);text-decoration:none}
-a.lk:hover{background:rgba(255,255,255,.16)}
-.lk small{display:block;color:#A8B3CB;font-size:.78rem;line-height:1.3}.lk b{overflow-wrap:anywhere;font-size:.96rem;font-weight:600}.lk em{font-style:normal;font-size:1.3rem}
-.two{display:grid;grid-template-columns:1.2fr 1fr;gap:18px;align-items:start}
-.panel{padding:24px}
-form{display:grid;gap:14px}.row{display:grid;grid-template-columns:1fr 1fr;gap:12px}
-label{font-weight:600;font-size:.9rem}
-input,textarea{width:100%;margin-top:5px;padding:12px 15px;border:1.5px solid var(--ln);border-radius:14px;background:var(--bg);color:var(--ink);font:inherit;resize:vertical}
-input:focus,textarea:focus{outline:0;border-color:var(--a);background:var(--card);box-shadow:0 0 0 4px rgba(91,91,240,.18)}
-.hp{position:absolute;left:-9999px}.cc{text-align:right;font-size:.78rem;color:var(--mut)}
-.msg{min-height:1.3em;font-weight:600;font-size:.92rem}.msg.ok{color:#0E8F78}.msg.er{color:#D6334A}
-.note h3{font-size:1.2rem;margin-bottom:10px}.note li{list-style:none;margin:12px 0;padding-left:38px;position:relative;font-size:.97rem}
-.note li b{position:absolute;left:0;top:0;width:26px;height:26px;border-radius:50%;background:linear-gradient(135deg,var(--a),var(--b));color:#fff;display:grid;place-items:center;font-size:.8rem}
-/* news */
-.sub{color:var(--mut);margin:-14px 0 18px;font-size:.95rem}
-.tabs{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:16px}
-.tabs button{border:1.5px solid var(--ln);background:var(--card);border-radius:99px;padding:7px 18px;font-weight:600;font-size:.92rem}
-.tabs button.on{background:linear-gradient(100deg,var(--a),var(--b));color:#fff;border-color:transparent}
-.news{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}
-.nw{display:flex;gap:14px;padding:12px;text-decoration:none;border-radius:18px}
-.nw:hover{border-color:var(--a)}
-.nw img{width:96px;height:78px;object-fit:cover;border-radius:12px;flex:none;background:var(--bg)}
-.nw b{display:block;font-size:1rem;line-height:1.5;font-weight:600}
-.nw small{color:var(--mut);font-size:.78rem}
-.empty{text-align:center;color:var(--mut);padding:26px 10px;grid-column:1/-1}
-footer{text-align:center;padding:46px 0 40px;font-size:.9rem;color:var(--mut)}
-.nums{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:12px;margin-top:20px}
-.xb{margin-top:20px;padding:22px}.xb h3{font-size:1.1rem;margin-bottom:12px}
-.kw{display:flex;flex-wrap:wrap;gap:8px}.kw span{background:var(--chip);color:var(--a);font-weight:600;font-size:.9rem;padding:3px 14px;border-radius:99px}
-.avl{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:10px}.avl div{padding:10px 14px;border-radius:14px;background:var(--bg)}.avl small{display:block;color:var(--mut);font-size:.8rem}.avl b{font-weight:600}
-.c4{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
-.cres{margin-top:16px;padding:14px 16px;border-radius:14px;background:var(--bg);font-weight:600}.cres.ok{background:rgba(19,194,163,.15);color:#0E8F78}.cres.lo{background:rgba(214,51,74,.12);color:#D6334A}
-.vis{display:flex;flex-wrap:wrap;justify-content:center;gap:6px 18px;margin-bottom:14px}.vis[hidden]{display:none}.vis b{color:var(--ink)}
-@media(max-width:600px){.c4{grid-template-columns:1fr 1fr}}
-/* mobile call bar */
-.cta{display:none}
-.rv{opacity:0;transform:translateY(24px);transition:opacity .6s,transform .6s}.rv.in{opacity:1;transform:none}
-@media(max-width:860px){.hero .wrap,.about,.two,.ct{grid-template-columns:1fr}.sk,.ed,.news{grid-template-columns:1fr}.why{grid-template-columns:1fr 1fr}.hero{padding-top:118px;border-radius:0 0 30px 30px}.pt{width:min(74%,290px)}.dark{border-radius:30px}
-.cta{display:grid;grid-template-columns:1fr 1fr;gap:8px;position:fixed;left:0;right:0;bottom:0;z-index:70;padding:8px 12px calc(8px + env(safe-area-inset-bottom,0px));background:var(--nv);border-top:1px solid rgba(255,255,255,.14)}
-.cta a{display:flex;align-items:center;justify-content:center;min-height:46px;border-radius:99px;font-weight:700;text-decoration:none;color:#fff;background:linear-gradient(100deg,var(--a),var(--b))}.cta a+a{background:#25D366}
-footer{padding-bottom:90px}}
-@media(max-width:600px){#dEn,#dHj{display:none}.dbar{font-size:.8rem}}
-@media(max-width:520px){.row,.why{grid-template-columns:1fr}.btn{width:100%}.ct{padding:24px}.fc{font-size:.76rem}}
-@media(prefers-reduced-motion:reduce){*{transition:none!important;scroll-behavior:auto!important}.rv{opacity:1;transform:none}}
-</style>
-</head>
-<body>
-<div class="dbar" id="dbar"><span id="dEn"></span><span class="bd" id="dBn"></span><span class="hj" id="dHj"></span><span class="ck" id="clk">--:--:--</span></div>
-<div class="top"><nav class="nav" aria-label="Main"><a href="#about" data-en="About">পরিচিতি</a><a href="#experience" data-en="Experience">অভিজ্ঞতা</a><a href="#skills" data-en="Skills">দক্ষতা</a><a href="#education" data-en="Education">শিক্ষা</a><a href="#contact" data-en="Contact">যোগাযোগ</a><a href="#news" data-en="News">খবর</a></nav><button class="lg" id="lg" type="button" aria-label="Language">EN</button></div>
-
+:root{--bg:#eceae6;--pn:#fff;--ink:#17181c;--mu:#6c6e76;--ln:#e0ddd7;--fd:#f6f5f2;--ac:#d62828;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media(prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#0f1012;--pn:#1a1b1f;--ink:#f1efec;--mu:#9b9da6;--ln:#2e3036;--fd:#141518}}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:15px/1.5 'Hind Siliguri',system-ui,sans-serif}
+header{background:#101114;color:#fff;display:flex;align-items:center;gap:12px;padding:12px 20px}
+.logo{width:34px;height:34px;border-radius:8px;background:var(--ac);display:grid;place-items:center;font-weight:700;font-size:18px}
+header h1{font-size:18px;margin:0;font-weight:700;flex:1}header small{display:block;font-weight:400;color:#9b9da6;font-size:12px;line-height:1.2}
+.btn{font:inherit;font-weight:700;border:0;border-radius:8px;background:var(--ac);color:#fff;padding:9px 18px;cursor:pointer}
+.btn:hover{filter:brightness(1.1)}
+main{display:grid;gap:16px;padding:16px;max-width:1500px;margin:0 auto;grid-template-columns:300px minmax(0,1fr) 350px;align-items:start}
+@media(max-width:1100px){main{grid-template-columns:1fr}.pv{order:1}.ct{order:2}.tp{order:3}}
+.pn{background:var(--pn);border:1px solid var(--ln);border-radius:12px;padding:16px}
+.pn h2{font-size:13px;margin:0 0 12px;color:var(--mu);font-weight:700;letter-spacing:.02em}
+label{display:block;font-size:13px;font-weight:500;margin:12px 0 5px}label:first-of-type{margin-top:0}
+input[type=text],textarea{width:100%;font:inherit;color:var(--ink);background:var(--fd);border:1px solid var(--ln);border-radius:8px;padding:8px 10px}
+textarea{min-height:80px;resize:vertical}
+:is(input,textarea,button):focus-visible{outline:2px solid var(--ac);outline-offset:1px}
+.drop{display:block;text-align:center;border:1.5px dashed var(--ln);border-radius:10px;padding:16px;cursor:pointer;color:var(--mu);background:var(--fd);margin:0!important}
+.drop:hover{border-color:var(--ac)}
+.r2{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.seg{display:flex;gap:6px}.seg button{flex:1;font:inherit;font-size:13px;padding:7px;border:1px solid var(--ln);background:var(--fd);color:var(--ink);border-radius:8px;cursor:pointer}
+.seg button.on{background:var(--ink);color:var(--pn);border-color:var(--ink)}
+.pv{position:sticky;top:12px;display:flex;flex-direction:column;align-items:center;gap:10px}
+.stage{background:repeating-conic-gradient(var(--ln) 0 25%,transparent 0 50%) 0 0/20px 20px;border-radius:12px;padding:18px;width:100%;display:flex;justify-content:center}
+canvas#cv{max-width:100%;max-height:calc(100vh - 190px);width:auto;height:auto;box-shadow:0 8px 30px rgba(0,0,0,.3);border-radius:4px}
+.nm{color:var(--mu);font-size:13px}
+.tp{max-height:calc(100vh - 100px);overflow:auto}
+@media(max-width:1100px){.tp{max-height:none}}
+.chips{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:12px}
+.chips button{font:inherit;font-size:12px;padding:4px 10px;border-radius:99px;border:1px solid var(--ln);background:var(--fd);color:var(--ink);cursor:pointer}
+.chips button.on{background:var(--ac);border-color:var(--ac);color:#fff}
+.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
+@media(max-width:1100px){.grid{grid-template-columns:repeat(4,1fr)}}@media(max-width:560px){.grid{grid-template-columns:repeat(3,1fr)}}
+.t{padding:0;border:2px solid transparent;border-radius:8px;background:none;cursor:pointer;overflow:hidden;line-height:0}
+.t canvas{width:100%;height:auto;border-radius:6px}.t.on{border-color:var(--ac)}.t.h{display:none}
+header{position:sticky;top:0;z-index:5;border-bottom:3px solid var(--ac)}.pv{top:76px}
+.pn{box-shadow:0 1px 2px rgba(0,0,0,.04),0 8px 24px rgba(0,0,0,.05)}
+.pn h2{display:flex;align-items:center;gap:8px;color:var(--ink);font-size:14px}.pn h2::before{content:"";width:4px;height:14px;border-radius:2px;background:var(--ac)}
+.rg{display:grid;grid-template-columns:auto 1fr;gap:6px 12px;align-items:center;font-size:12px;color:var(--mu)}
+input[type=range]{width:100%;accent-color:var(--ac)}
+.acts{display:flex;gap:8px}.acts button{font:inherit;font-size:13px;padding:7px 16px;border-radius:8px;border:1px solid var(--ln);background:var(--pn);color:var(--ink);cursor:pointer}.acts button:hover{border-color:var(--ac)}
+.ts{position:fixed;left:50%;bottom:calc(24px + env(safe-area-inset-bottom,0px));transform:translate(-50%,20px);background:#101114;color:#fff;padding:10px 18px;border-radius:99px;font-size:14px;opacity:0;pointer-events:none;transition:.25s;z-index:9}.ts.on{opacity:1;transform:translate(-50%,0)}
+.t{transition:transform .15s}.t:hover{transform:translateY(-2px)}.drop.ok{border-style:solid;border-color:var(--ac);color:var(--ink)}
+@media(prefers-reduced-motion:reduce){.t,.ts{transition:none}.t:hover{transform:none}}
+</style></head><body>
+<header><div class="logo">ফ</div><h1>ফটোকার্ড স্টুডিও<small>৫০টি নিউজ টেমপ্লেট</small></h1><button class="btn" id="dl">ডাউনলোড PNG</button></header>
 <main>
-<header class="hero"><div class="wrap">
-<div><span class="pill" data-en="Open to inventory and operations roles">ইনভেন্টরি ও অপারেশন্স পদের জন্য প্রস্তুত</span>
-<h1>Sohan Ali Sikder</h1>
-<div class="role" data-en="Inventory and operations executive">ইনভেন্টরি ও অপারেশন্স এক্সিকিউটিভ</div>
-<p class="sum" data-en="Two years of shop, stock and team work at Apon Tech Ltd. I am looking for an inventory or operations role in a garments factory in Bangladesh.">আপন টেক লিমিটেডে দুই বছর দোকান, স্টক ও টিম পরিচালনার অভিজ্ঞতা। বাংলাদেশের একটি গার্মেন্টস ফ্যাক্টরিতে ইনভেন্টরি বা অপারেশন্স পদে কাজ করতে চাই।</p>
-<div><a class="btn p" href="tel:+8801729948649" data-en="Call now">এখনই কল করুন</a><a class="btn" href="https://wa.me/8801729948649" target="_blank" rel="noopener noreferrer">WhatsApp</a><a class="btn" id="cv" href="https://drive.google.com/file/d/16CjDf6xMueUT4dmRH0moEQVmw54vzSJg/view?usp=drive_link" target="_blank" rel="noopener noreferrer" data-en="Download CV">সিভি ডাউনলোড</a></div></div>
-<div class="pt" aria-hidden="true"><div class="ph"><span>SAS</span><img id="hero" alt="" referrerpolicy="no-referrer" hidden></div><span class="fc" data-en="📦 Inventory">📦 ইনভেন্টরি</span><span class="fc">⚙️ POS / ERP</span><span class="fc" data-en="🤝 Team work">🤝 টিম ওয়ার্ক</span></div>
-</div></header>
-
-<section id="about"><div class="wrap"><h2 class="rv" data-en="About me">আমার সম্পর্কে</h2>
-<div class="about"><p class="big card rv" data-en="I am a dedicated professional with hands-on experience in inventory handling, stock management, team coordination and daily operations. I want to apply these skills in a reputable garments factory, support smooth operations and grow with the organization.">আমি ইনভেন্টরি হ্যান্ডলিং, স্টক ম্যানেজমেন্ট, টিম সমন্বয় ও দৈনন্দিন অপারেশনে হাতেকলমে অভিজ্ঞ। একটি স্বনামধন্য গার্মেন্টস ফ্যাক্টরিতে এই দক্ষতা কাজে লাগিয়ে প্রতিষ্ঠানের সাথে এগিয়ে যেতে চাই।</p>
-<div class="stats rv"><div class="st"><b data-en="2 years">২ বছর</b><small data-en="at Apon Tech Ltd.">আপন টেক লিমিটেডে</small></div><div class="st"><b>POS / ERP</b><small data-en="Used in daily work">প্রতিদিনের কাজে ব্যবহার</small></div><div class="st"><b>B.S.S.</b><small data-en="Final year student · Bangla and English">শেষ বর্ষের ছাত্র · বাংলা ও ইংরেজি</small></div></div></div>
-<h2 class="rv" style="margin:50px 0 22px;font-size:clamp(1.4rem,3.6vw,1.9rem)" data-en="Why hire me">কেন আমাকে নেবেন</h2>
-<div class="why rv"><div><i>1</i><h3 data-en="Stock kept in order">স্টক ঠিক রাখি</h3><p data-en="Stock levels checked so products stay available.">স্টকের পরিমাণ নিয়মিত দেখি, যাতে পণ্য সবসময় হাতে থাকে।</p></div><div><i>2</i><h3 data-en="Works on systems">সিস্টেমে কাজ জানি</h3><p data-en="POS / ERP used daily for work and sales reporting.">প্রতিদিন POS / ERP-এ কাজ ও বিক্রির রিপোর্ট করি।</p></div><div><i>3</i><h3 data-en="Team coordination">টিমের সাথে সমন্বয়</h3><p data-en="Supported daily operations and worked with team members.">দৈনন্দিন কাজে সহকর্মীদের সাথে মিলে কাজ করি।</p></div><div><i>4</i><h3 data-en="Organized storage">গোছানো স্টোর</h3><p data-en="Displays and storage areas kept neat and in order.">ডিসপ্লে ও স্টোরেজ এলাকা পরিপাটি রাখি।</p></div></div>
-<div id="extra"></div>
-</div></section>
-
-<section id="experience"><div class="wrap"><h2 class="rv" data-en="Work experience">কাজের অভিজ্ঞতা</h2>
-<div class="jobs rv"><article class="job"><h3 data-en="Assistant Shop In-Charge">সহকারী শপ ইন-চার্জ</h3><div class="m"><span data-en="Apon Tech Ltd.">আপন টেক লিমিটেড</span><span data-en="1 year">১ বছর</span></div><ul><li data-en="Supported day-to-day operations and coordinated with team members">দৈনন্দিন কাজে সহায়তা ও টিম সদস্যদের সাথে সমন্বয়</li><li data-en="Monitored inventory and stock levels to maintain availability">ইনভেন্টরি ও স্টকের পরিমাণ দেখে পণ্যের সরবরাহ ঠিক রাখা</li><li data-en="Used POS / ERP systems for daily work and sales reporting">দৈনিক কাজ ও বিক্রির রিপোর্টে POS / ERP ব্যবহার</li><li data-en="Arranged and organized products and supported merchandising">পণ্য সাজানো ও মার্চেন্ডাইজিংয়ে সহায়তা</li><li data-en="Handled sales and delivered customer service">বিক্রি ও গ্রাহক সেবা</li></ul></article>
-<article class="job"><h3 data-en="Shop Executive">শপ এক্সিকিউটিভ</h3><div class="m"><span data-en="Apon Tech Ltd.">আপন টেক লিমিটেড</span><span data-en="1 year">১ বছর</span></div><ul><li data-en="Carried out product stocking and inventory activities">পণ্য মজুত ও ইনভেন্টরির কাজ করা</li><li data-en="Maintained organized product displays and storage areas">পরিপাটি ডিসপ্লে ও স্টোরেজ এলাকা বজায় রাখা</li><li data-en="Supported day-to-day shop operations">দোকানের দৈনন্দিন কাজে সহায়তা</li><li data-en="Handled retail sales and provided customer service">খুচরা বিক্রি ও গ্রাহক সেবা</li><li data-en="Assisted customers in selecting suitable products">গ্রাহকদের উপযুক্ত পণ্য বেছে নিতে সাহায্য</li></ul></article></div>
-</div></section>
-
-<div class="dark" id="skills"><div class="wrap"><h2 class="rv" data-en="Skills">দক্ষতা</h2>
-<div class="sk rv"><div><h3 data-en="Inventory and store">ইনভেন্টরি ও স্টোর</h3><div class="chips"><span data-en="Inventory management">ইনভেন্টরি ম্যানেজমেন্ট</span><span data-en="Stock management">স্টক ম্যানেজমেন্ট</span><span data-en="Store operations">স্টোর অপারেশন্স</span><span data-en="Merchandising">মার্চেন্ডাইজিং</span></div></div>
-<div><h3 data-en="People and sales">মানুষ ও বিক্রি</h3><div class="chips"><span data-en="Team coordination">টিম সমন্বয়</span><span data-en="Time management">সময় ব্যবস্থাপনা</span><span data-en="Communication">যোগাযোগ দক্ষতা</span><span data-en="Customer service">গ্রাহক সেবা</span></div></div>
-<div><h3 data-en="Systems">সিস্টেম</h3><div class="lv"><span>POS / ERP</span><em data-en="Daily use">প্রতিদিন ব্যবহার</em></div><div class="lv"><span>Microsoft Excel</span><em class="lo" data-en="Basic">প্রাথমিক</em></div><div class="lv"><span>Microsoft Word</span><em class="lo" data-en="Basic">প্রাথমিক</em></div></div></div>
-</div></div>
-
-<section id="education"><div class="wrap"><h2 class="rv" data-en="Education">শিক্ষা</h2>
-<div class="ed rv"><div><h3 data-en="B.S.S. (final year)">B.S.S. (শেষ বর্ষ)</h3><p data-en="Bhawal Badre Alam Government College">ভাওয়াল বদরে আলম সরকারি কলেজ</p><b data-en="Session 2021 to 2022">সেশন ২০২১–২০২২</b></div><div><h3 data-en="HSC, Humanities">এইচএসসি, মানবিক</h3><p data-en="North Laskarcala High School and College">নর্থ লস্করচালা হাই স্কুল অ্যান্ড কলেজ</p><b data-en="2021 | GPA 4.25">২০২১ | জিপিএ ৪.২৫</b></div><div><h3 data-en="SSC, Science">এসএসসি, বিজ্ঞান</h3><p data-en="Mazukhan High School">মাজুখান উচ্চ বিদ্যালয়</p><b data-en="2019 | GPA 3.78">২০১৯ | জিপিএ ৩.৭৮</b></div></div>
-</div></section>
-
-<section id="contact"><div class="wrap"><div class="ct rv"><div><h2 data-en="Let's talk about your next opening">আপনার পরবর্তী নিয়োগের জন্য কথা বলুন</h2><p data-en="If your factory or company needs someone for inventory, store or operations work, call or write to me. I reply in Bangla or English.">আপনার ফ্যাক্টরি বা কোম্পানিতে ইনভেন্টরি, স্টোর বা অপারেশনের লোক দরকার হলে কল বা মেসেজ করুন। আমি বাংলা ও ইংরেজিতে উত্তর দিই।</p></div>
-<div><a class="lk" href="tel:+8801729948649"><em>📞</em><span><small>Phone / WhatsApp</small><b>01729948649</b></span></a><a class="lk" href="mailto:sohanbdt.1@gmail.com"><em>✉️</em><span><small>Email</small><b>sohanbdt.1@gmail.com</b></span></a><a class="lk" href="https://www.facebook.com/TheSohanSaga/" target="_blank" rel="noopener noreferrer"><em>👍</em><span><small>Facebook</small><b>TheSohanSaga</b></span></a><a class="lk" href="https://www.linkedin.com/in/suhan-ali-bb3a14324" target="_blank" rel="noopener noreferrer"><em>💼</em><span><small>LinkedIn</small><b>Sohan Ali Sikder</b></span></a><div class="lk"><em>📍</em><span><small data-en="Location">ঠিকানা</small><b data-en="Gazipur, Bangladesh">গাজীপুর, বাংলাদেশ</b></span></div></div></div>
-<h2 class="rv" style="margin:60px 0 24px" data-en="Send a message">মেসেজ পাঠান</h2>
-<div class="two"><div class="panel rv"><form id="mf" autocomplete="off">
-<div class="row"><div><label for="mn" data-en="Name">নাম</label><input id="mn" maxlength="40" required></div><div><label for="mc" data-en="Phone number or email">ফোন নম্বর বা ইমেইল</label><input id="mc" maxlength="60" required placeholder="01XXXXXXXXX"></div></div>
-<div><label for="mm" data-en="Message">মেসেজ</label><textarea id="mm" rows="5" maxlength="1000" required></textarea><div class="cc"><span id="mcnt">0</span>/1000</div></div>
-<input class="hp" id="mhp" tabindex="-1" aria-hidden="true">
-<div><button class="btn p" id="msb" type="submit" style="margin:0" data-en="Send message">মেসেজ পাঠান</button></div><div class="msg" id="mmsg" role="status"></div></form></div>
-<div class="panel note rv"><h3 data-en="How it works">কীভাবে কাজ করে</h3><ul><li><b>1</b><span data-en="Write your name, contact and message.">আপনার নাম, ফোন বা ইমেইল ও মেসেজ লিখুন।</span></li><li><b>2</b><span data-en="It reaches me directly. Only I can see it.">মেসেজ সরাসরি আমার কাছে পৌঁছায়। শুধু আমি দেখতে পাব।</span></li><li><b>3</b><span data-en="For a faster reply, use WhatsApp.">দ্রুত উত্তর চাইলে WhatsApp করুন।</span></li></ul></div></div>
-</div></section>
-
-<section id="tool"><div class="wrap"><h2 class="rv" data-en="Stock calculator">স্টক ক্যালকুলেটর</h2>
-<p class="sub" data-en="A quick tool: how many days your stock will last and when to reorder.">দ্রুত হিসাব: স্টক কতদিন চলবে আর কখন নতুন অর্ডার দিতে হবে।</p>
-<div class="panel rv"><div class="c4">
-<div><label for="c1" data-en="Current stock">বর্তমান স্টক</label><input id="c1" type="number" inputmode="decimal" min="0"></div>
-<div><label for="c2" data-en="Daily usage">দৈনিক ব্যবহার</label><input id="c2" type="number" inputmode="decimal" min="0"></div>
-<div><label for="c3" data-en="Lead time (days)">সরবরাহে লাগে (দিন)</label><input id="c3" type="number" inputmode="decimal" min="0"></div>
-<div><label for="c4" data-en="Safety stock">নিরাপত্তা স্টক</label><input id="c4" type="number" inputmode="decimal" min="0"></div></div>
-<div class="cres" id="cr" role="status">স্টক ও দৈনিক ব্যবহার লিখুন।</div></div>
-</div></section>
-
-<section id="news"><div class="wrap"><h2 class="rv" data-en="Today's news">আজকের খবর</h2>
-<p class="sub" data-en="Headlines from Bangla news sites. Tap to read on the original site.">বাংলা সংবাদমাধ্যমের শিরোনাম। পড়তে ক্লিক করলে মূল সাইটে যাবে।</p>
-<div class="tabs" id="ntabs"></div>
-<div class="news" id="nlist"><div class="empty">খবর লোড হচ্ছে…</div></div>
-</div></section>
+<section class="pn ct"><h2>কনটেন্ট</h2>
+<label class="drop" for="file" id="dz">ছবি আপলোড করুন</label><input type="file" id="file" accept="image/*" hidden>
+<label for="head">শিরোনাম</label><textarea id="head">রাজধানীতে আজ থেকে নতুন যান চলাচল নিয়ম কার্যকর</textarea>
+<div class="r2"><div><label for="tag">ট্যাগ</label><input type="text" id="tag" value="ব্রেকিং নিউজ"></div><div><label for="brand">পেজের নাম</label><input type="text" id="brand" value="আপনার নিউজ"></div>
+<div><label for="date">তারিখ</label><input type="text" id="date"></div><div><label for="src">সূত্র</label><input type="text" id="src" placeholder="ঐচ্ছিক"></div></div>
+<label>সাইজ</label><div class="seg" id="sz"><button data-w="1080" data-h="1080" class="on">১:১</button><button data-w="1080" data-h="1350">৪:৫</button><button data-w="1280" data-h="720">১৬:৯</button></div>
+<label>ছবি অ্যাডজাস্ট</label><div class="rg"><span>জুম</span><input type="range" id="z" min="100" max="300" value="100"><span>অনুভূমিক</span><input type="range" id="px" min="-100" max="100" value="0"><span>উল্লম্ব</span><input type="range" id="py" min="-100" max="100" value="0"></div>
+<label>শিরোনাম স্টাইল</label><div class="seg" id="ff"><button class="on">অটো</button><button data-f='"Noto Serif Bengali"'>সেরিফ</button><button data-f='"Hind Siliguri"'>সান্স</button></div>
+<div class="rg" style="margin-top:10px"><span>সাইজ</span><input type="range" id="sc" min="60" max="120" value="100"></div>
+<div style="margin-top:14px"><label class="drop" id="lz" for="logo">লোগো আপলোড (ঐচ্ছিক)</label><input type="file" id="logo" accept="image/*" hidden></div>
+</section>
+<section class="pv"><div class="stage"><canvas id="cv" width="1080" height="1080"></canvas></div><div class="nm" id="nm"></div><div class="acts"><button id="jp">JPG ডাউনলোড</button><button id="cp">ছবি কপি</button></div><div class="ts" id="ts" role="status"></div></section>
+<section class="pn tp"><h2>টেমপ্লেট</h2><div class="chips" id="ch"></div><div class="grid" id="gr"></div></section>
 </main>
-<footer><div class="vis" id="vis" hidden><span>👁️ <span data-en="Total visits">মোট ভিজিট</span> <b id="vV">0</b></span><span>👤 <span data-en="Visitors">ভিজিটর</span> <b id="vU">0</b></span><span>📅 <span data-en="Today">আজ</span> <b id="vT">0</b></span></div>&copy; 2026 Sohan Ali Sikder</footer>
-<div class="cta"><a href="tel:+8801729948649" data-en="📞 Call">📞 কল করুন</a><a href="https://wa.me/8801729948649" target="_blank" rel="noopener noreferrer">💬 WhatsApp</a></div>
-
 <script>
 (function(){
-var SCRIPT_URL="https://script.google.com/macros/s/AKfycbyP1iD4mXwAV3CbmMdcvJzLHB1bKxQs0xSpRtYFCsGQfr9-q-Tc578V__iTTYBxJuPpXQ/exec";
-var $=function(i){return document.getElementById(i)},R=document.documentElement,store={get:function(k){try{return localStorage.getItem(k)}catch(e){return null}},set:function(k,v){try{localStorage.setItem(k,v)}catch(e){}}};
-/* Fill these with your REAL facts. Empty lists stay hidden on the page.
-   numbers:  {v:"...",l:["বাংলা লেবেল","English label"]}
-   keywords: ["FIFO","GRN"]  (only terms you really know)
-   avail:    {l:["যোগদান","Joining"],v:["বাংলা মান","English value"]} */
-var PROFILE={numbers:[],keywords:[],avail:[]};
-var isBn=function(){return R.lang==="bn"},T=function(bn,en){return isBn()?bn:en};
-/* language: Bangla is the default */
-var els=[].slice.call(document.querySelectorAll("[data-en]"));els.forEach(function(e){e.dataset.bn=e.textContent});
-function lang(l){var b=l==="bn";R.lang=b?"bn":"en";els.forEach(function(e){e.textContent=b?e.dataset.bn:e.dataset.en});$("lg").textContent=b?"EN":"বাং";store.set("sas-lang",l);tick();extra();showVis()}
-$("lg").onclick=function(){lang(isBn()?"en":"bn")};if(store.get("sas-lang")==="en")lang("en");
-/* clock + dates (Dhaka): English, Bangla, Hijri */
-var BD="০১২৩৪৫৬৭৮৯",bnn=function(n){return String(n).replace(/\d/g,function(d){return BD[d]})};
-var EN=["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"],EM=["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"],BDY=["রবিবার","সোমবার","মঙ্গলবার","বুধবার","বৃহস্পতিবার","শুক্রবার","শনিবার"];
-var BM=["বৈশাখ","জ্যৈষ্ঠ","আষাঢ়","শ্রাবণ","ভাদ্র","আশ্বিন","কার্তিক","অগ্রহায়ণ","পৌষ","মাঘ","ফাল্গুন","চৈত্র"],HM=["মুহাররম","সফর","রবিউল আউয়াল","রবিউস সানি","জমাদিউল আউয়াল","জমাদিউস সানি","রজব","শাবান","রমজান","শাওয়াল","জিলকদ","জিলহজ"];
-var leap=function(y){return y%4===0&&y%100!==0||y%400===0};
-function bong(y,m,d){var by=(m>4||(m===4&&d>=14))?y:y-1,df=Math.round((Date.UTC(y,m-1,d)-Date.UTC(by,3,14))/864e5)+1,L=[31,31,31,31,31,31,30,30,30,30,leap(by+1)?30:29,30],i=0;while(i<11&&df>L[i]){df-=L[i];i++}return{y:by-593,m:i,d:df}}
-function hij(y,m,d){try{var o={};new Intl.DateTimeFormat("en-u-ca-islamic-umalqura",{day:"numeric",month:"numeric",year:"numeric"}).formatToParts(new Date(Date.UTC(y,m-1,d-1,12))).forEach(function(x){o[x.type]=parseInt(x.value,10)});return o.day&&o.month&&o.year?o:null}catch(e){return null}}
-function tick(){var o={};new Intl.DateTimeFormat("en-GB",{timeZone:"Asia/Dhaka",hour:"numeric",minute:"2-digit",second:"2-digit",hour12:true,year:"numeric",month:"numeric",day:"numeric"}).formatToParts(new Date()).forEach(function(x){o[x.type]=x.value});
-var y=+o.year,m=+o.month,d=+o.day,wd=new Date(Date.UTC(y,m-1,d)).getUTCDay(),b=bong(y,m,d),h=hij(y,m,d),t=o.hour+":"+o.minute+":"+o.second+" "+(o.dayPeriod||"").toUpperCase();
-$("clk").textContent=isBn()?bnn(t):t;
-$("dEn").textContent="📅 "+EN[wd]+", "+d+" "+EM[m-1]+" "+y;
-$("dBn").textContent="🌾 "+BDY[wd]+", "+bnn(b.d)+" "+BM[b.m]+" "+bnn(b.y)+" বঙ্গাব্দ";
-$("dHj").textContent=h?"🌙 "+bnn(h.day)+" "+HM[h.month-1]+" "+bnn(h.year)+" হিজরি":""}
-function bh(){R.style.setProperty("--bh",$("dbar").offsetHeight+"px")}tick();bh();addEventListener("resize",bh);setInterval(tick,1000);
-addEventListener("load",bh);
-/* reveal on scroll */
-var io=new IntersectionObserver(function(es){es.forEach(function(e){if(!e.isIntersecting)return;e.target.classList.add("in");io.unobserve(e.target)})},{threshold:.1});
-document.querySelectorAll(".rv").forEach(function(e){io.observe(e)});
-/* portrait: photo.jpg next to this file, else Google Drive */
-var im=$("hero"),drive="https://drive.google.com/thumbnail?id=1_4RBqCFg6kaPgEC061rJEm5G8-FrkP91&sz=w1000",tried=0;
-im.onload=function(){if(im.naturalWidth>50)im.hidden=false};
-im.onerror=function(){if(!tried){tried=1;im.src=drive}};
-im.src="photo.jpg";
-/* message form (Apps Script) */
-var ready=SCRIPT_URL.indexOf("http")===0,mmsg=$("mmsg");
-$("mm").addEventListener("input",function(){$("mcnt").textContent=this.value.length});
-$("mf").addEventListener("submit",function(e){e.preventDefault();
-var n=$("mn").value.trim(),ct=$("mc").value.trim(),m=$("mm").value.trim(),btn=$("msb");if(!n||!ct||!m)return;
-if($("mhp").value)return;
-if(!ready){mmsg.className="msg er";mmsg.textContent=T("সেটআপ শেষ হয়নি: SCRIPT_URL বসান।","Setup not finished: paste the Web App URL into SCRIPT_URL.");return}
-if(Date.now()-(+store.get("sas-lastmsg")||0)<30000){mmsg.className="msg er";mmsg.textContent=T("আবার পাঠাতে কয়েক সেকেন্ড অপেক্ষা করুন।","Please wait a few seconds before sending again.");return}
-btn.disabled=true;mmsg.className="msg";mmsg.textContent=T("পাঠানো হচ্ছে…","Sending…");
-fetch(SCRIPT_URL,{method:"POST",mode:"no-cors",headers:{"Content-Type":"text/plain;charset=utf-8"},body:JSON.stringify({type:"message",name:n,contact:ct.slice(0,60),message:m,photo:"",website:""})})
-.then(function(){store.set("sas-lastmsg",String(Date.now()));mmsg.className="msg ok";mmsg.textContent=T("ধন্যবাদ! আপনার মেসেজ পাঠানো হয়েছে।","Thank you! Your message has been sent.");$("mf").reset();$("mcnt").textContent="0"})
-.catch(function(){mmsg.className="msg er";mmsg.textContent=T("পাঠানো যায়নি। আবার চেষ্টা করুন।","Could not send. Please try again.")})
-.then(function(){btn.disabled=false})});
-/* Bangla news (rss2json), loads only when the section is near the screen */
-function ago(t){var d=new Date(t);if(isNaN(d))return"";var s=(Date.now()-d)/1000;if(s<60)return T("এইমাত্র","just now");if(s<3600)return isBn()?bnn(Math.floor(s/60))+" মিনিট আগে":Math.floor(s/60)+" min ago";if(s<86400)return isBn()?bnn(Math.floor(s/3600))+" ঘণ্টা আগে":Math.floor(s/3600)+" hr ago";return d.toLocaleDateString(isBn()?"bn-BD":"en-GB",{day:"numeric",month:"short",year:"numeric"})}
-var FEEDS=[
-{n:"বিবিসি বাংলা",u:"https://feeds.bbci.co.uk/bengali/rss.xml"},
-{n:"প্রথম আলো",u:"https://www.prothomalo.com/feed"},
-{n:"জাগো নিউজ",u:"https://www.jagonews24.com/rss/rss.xml"}
-],nl=$("nlist"),nt=$("ntabs"),started=false;
-function nmsg(t){nl.textContent="";var e=document.createElement("div");e.className="empty";e.textContent=t;nl.appendChild(e)}
-function nshow(items){nl.textContent="";if(!items.length){nmsg(T("এই মুহূর্তে কোনো খবর পাওয়া যায়নি।","No news found right now."));return}
-items.slice(0,10).forEach(function(it){var a=document.createElement("a"),d=document.createElement("div"),b=document.createElement("b"),s=document.createElement("small"),src=it.thumbnail||(it.enclosure&&it.enclosure.link)||"";
-a.className="nw";a.href=it.link;a.target="_blank";a.rel="noopener noreferrer";
-if(src&&/^https?:/.test(src)){var g=document.createElement("img");g.src=src;g.alt="";g.loading="lazy";g.referrerPolicy="no-referrer";g.onerror=function(){g.remove()};a.appendChild(g)}
-b.textContent=it.title;s.textContent=ago(String(it.pubDate||"").replace(" ","T")+"Z");d.appendChild(b);d.appendChild(s);a.appendChild(d);nl.appendChild(a)})}
-function nload(i){var f=FEEDS[i],key="sas-news"+i,c=null;
-[].forEach.call(nt.children,function(x,j){x.classList.toggle("on",j===i)});
-try{c=JSON.parse(sessionStorage.getItem(key)||"null")}catch(e){}
-if(c&&Date.now()-c.t<900000){nshow(c.d);return}
-nmsg(T("খবর লোড হচ্ছে…","Loading news…"));
-fetch("https://api.rss2json.com/v1/api.json?rss_url="+encodeURIComponent(f.u)).then(function(r){return r.json()}).then(function(j){
-if(j.status!=="ok"||!j.items)throw 0;
-try{sessionStorage.setItem(key,JSON.stringify({t:Date.now(),d:j.items}))}catch(e){}
-nshow(j.items)}).catch(function(){nmsg(T("খবর লোড করা যায়নি। অন্য ট্যাব চেষ্টা করুন বা পরে রিফ্রেশ করুন।","Could not load news. Try another tab or refresh later."))})}
-FEEDS.forEach(function(f,i){var b=document.createElement("button");b.type="button";b.textContent=f.n;b.onclick=function(){nload(i)};nt.appendChild(b)});
-new IntersectionObserver(function(es,o){if(es[0].isIntersecting&&!started){started=true;o.disconnect();nload(0)}},{rootMargin:"300px"}).observe($("news"));
-/* profile blocks */
-function extra(){var x=$("extra"),i=isBn()?0:1,P=PROFILE;x.textContent="";
-function mk(t,c,txt){var e=document.createElement(t);if(c)e.className=c;if(txt!=null)e.textContent=txt;return e}
-if(P.numbers.length){var n=mk("div","nums");P.numbers.forEach(function(o){var d=mk("div","st");d.appendChild(mk("b",null,o.v));d.appendChild(mk("small",null,o.l[i]));n.appendChild(d)});x.appendChild(n)}
-if(P.keywords.length){var k=mk("div","xb card"),w=mk("div","kw");k.appendChild(mk("h3",null,T("গার্মেন্টস ও স্টোরের কাজের শব্দ","Garments and store terms")));P.keywords.forEach(function(t){w.appendChild(mk("span",null,t))});k.appendChild(w);x.appendChild(k)}
-if(P.avail.length){var a=mk("div","xb card"),g=mk("div","avl");a.appendChild(mk("h3",null,T("প্রাপ্যতা","Availability")));P.avail.forEach(function(o){var d=mk("div");d.appendChild(mk("small",null,o.l[i]));d.appendChild(mk("b",null,o.v[i]));g.appendChild(d)});a.appendChild(g);x.appendChild(a)}
-calc()}
-/* stock calculator */
-function calc(){var cs=+$("c1").value,du=+$("c2").value,lt=+$("c3").value,ss=+$("c4").value,o=$("cr");
-if(!$("c1").value||!(du>0)){o.className="cres";o.textContent=T("স্টক ও দৈনিক ব্যবহার লিখুন।","Enter stock and daily usage.");return}
-var days=cs/du,rp=du*lt+ss,low=cs<=rp,f=function(n){var v=Math.round(n*10)/10;return isBn()?bnn(v):String(v)};
-o.className="cres "+(low?"lo":"ok");
-o.textContent=T("স্টক চলবে প্রায় "+f(days)+" দিন। রিঅর্ডার পয়েন্ট "+f(rp)+"। "+(low?"এখনই অর্ডার দিন।":"এখনো নিরাপদ।"),"Stock lasts about "+f(days)+" days. Reorder point "+f(rp)+". "+(low?"Order now.":"Still safe."))}
-["c1","c2","c3","c4"].forEach(function(i){$(i).addEventListener("input",calc)});
-extra();
-/* visitor counter (Apps Script) */
-var lastStats=null;
-function showVis(){var s=lastStats;if(!s)return;var f=function(n){return isBn()?bnn(n):String(n)};$("vV").textContent=f(s.views);$("vU").textContent=f(s.unique);$("vT").textContent=f(s.today);$("vis").hidden=false}
-var vid=store.get("sas-vid"),isNew=!vid;if(!vid){vid=Math.random().toString(36).slice(2,10)+Date.now().toString(36);store.set("sas-vid",vid)}
-if(location.search.indexOf("me")>-1)store.set("sas-me","1");
-var skip=store.get("sas-me")==="1"||/bot|crawl|spider|preview/i.test(navigator.userAgent),seen=null;
-try{seen=sessionStorage.getItem("sas-seen")}catch(e){}
-if(ready){var act=(skip||seen)?"stats":"visit";
-fetch(SCRIPT_URL+"?a="+act+"&v="+encodeURIComponent(vid)+"&n="+(isNew?1:0)+"&m="+(/Mobi|Android/i.test(navigator.userAgent)?1:0)+"&r="+encodeURIComponent((document.referrer||"").replace(/^https?:\/\//,"").split("/")[0]))
-.then(function(r){return r.json()}).then(function(s){if(s&&typeof s.views==="number"){lastStats=s;showVis();if(act==="visit"){try{sessionStorage.setItem("sas-seen","1")}catch(e){}}}}).catch(function(){})}
-$("cv").addEventListener("click",function(){if(ready&&!skip)new Image().src=SCRIPT_URL+"?a=cv&v="+encodeURIComponent(vid)});
+var $=function(i){return document.getElementById(i)},cv=$('cv'),cx=cv.getContext('2d');
+var SE='"Noto Serif Bengali"',SA='"Hind Siliguri"',img=null,D={},cur=0,flt=-1,Z=1,PX=0,PY=0,FF=null,SC=1,logo=null;
+var TH=[{n:'ক্রিমসন',a:'#d62828',o:'#fff',d:'#14090a'},{n:'ওশান',a:'#0b6bcb',o:'#fff',d:'#06182f'},{n:'এমারাল্ড',a:'#0a9a62',o:'#fff',d:'#05211a'},{n:'সানরাইজ',a:'#f29100',o:'#1a1000',d:'#241500'},{n:'গোল্ড',a:'#f2c230',o:'#111',d:'#0f0f12'}];
+var bn='০১২৩৪৫৬৭৮৯',mo=['জানুয়ারি','ফেব্রুয়ারি','মার্চ','এপ্রিল','মে','জুন','জুলাই','আগস্ট','সেপ্টেম্বর','অক্টোবর','নভেম্বর','ডিসেম্বর'];
+function tb(s){return String(s).replace(/\d/g,function(d){return bn[d]})}
+var n=new Date();$('date').value=tb(n.getDate())+' '+mo[n.getMonth()]+' '+tb(n.getFullYear());
+function rgba(h,a){var v=parseInt(h.slice(1),16);return 'rgba('+(v>>16)+','+(v>>8&255)+','+(v&255)+','+a+')'}
+function wr(c,s,m){var o=[];s.split('\n').forEach(function(p){var l='';p.split(/\s+/).filter(Boolean).forEach(function(w){var t=l?l+' '+w:w;if(c.measureText(t).width>m&&l){o.push(l);l=w}else l=t});if(l)o.push(l)});return o}
+function fit(c,s,fam,wt,mw,mh,fs,ml){var L,lh,f;s=s||' ';fam=FF||fam;fs*=SC;for(;fs>14;fs-=2){f=wt+' '+fs+'px '+fam;c.font=f;L=wr(c,s,mw);lh=fs*1.4;if(L.length*lh<=mh&&L.length<=ml)break}return{L:L,fs:fs,lh:lh,f:f}}
+function put(c,o,x,y,col,al){c.font=o.f;c.fillStyle=col;c.textAlign=al||'left';o.L.forEach(function(l,i){c.fillText(l,x,y+o.lh*(i+1)-o.fs*.28)});c.textAlign='left'}
+function cover(c,x,y,w,h,t){c.save();c.beginPath();c.rect(x,y,w,h);c.clip();
+ if(img){var s=Math.max(w/img.width,h/img.height)*Z,iw=img.width*s,ih=img.height*s;c.drawImage(img,x+(w-iw)/2+PX*(iw-w)/2,y+(h-ih)/2+PY*(ih-h)/2,iw,ih)}
+ else{var g=c.createLinearGradient(x,y,x+w,y+h);g.addColorStop(0,t.a);g.addColorStop(1,t.d);c.fillStyle=g;c.fillRect(x,y,w,h);c.fillStyle='rgba(255,255,255,.35)';c.font='500 '+w*.04+'px '+SA;c.textAlign='center';c.fillText('এখানে আপনার ছবি',x+w/2,y+h*.4);c.textAlign='left'}c.restore()}
+function grad(c,y,W,h,col,a0,a1){var g=c.createLinearGradient(0,y,0,y+h);g.addColorStop(0,rgba(col,a0));g.addColorStop(1,rgba(col,a1));c.fillStyle=g;c.fillRect(0,y,W,h)}
+function chip(c,x,y,s,fs,bg,fg,ct){if(!s)return;c.font='700 '+fs+'px '+SA;var w=c.measureText(s).width+fs*1.3,h=fs*1.75;if(ct)x-=w/2;c.fillStyle=bg;c.fillRect(x,y,w,h);c.fillStyle=fg;c.textAlign='left';c.fillText(s,x+fs*.65,y+h*.7)}
+function meta(){return[D.src,D.date].filter(Boolean).join('  |  ')}
+function foot(c,W,p,y,h,t,fg,sub,dc){var fs=W*.034,by=y+h/2+fs*.35;c.font='700 '+fs+'px '+SA;
+ var bx=p;if(logo){var lg=fs*1.7,lw=lg*logo.width/logo.height;c.drawImage(logo,p,by-fs*.3-lg/2,lw,lg);bx=p+lw+fs*.4}else if(D.brand){c.fillStyle=dc||t.a;c.beginPath();c.arc(p+fs*.4,by-fs*.3,fs*.28,0,7);c.fill();bx=p+fs*1.1}
+ if(D.brand){c.font='700 '+fs+'px '+SA;c.fillStyle=fg;c.fillText(D.brand,bx,by)}
+ c.font='400 '+W*.027+'px '+SA;c.fillStyle=sub;c.textAlign='right';c.fillText(meta(),W-p,by);c.textAlign='left'}
+var LN=['ক্লাসিক','স্প্লিট','সাইডবার','বক্স','সেন্টার','হোয়াইট প্যানেল','ডায়াগোনাল','ফ্রেম','টপ ব্যানার','লাইভ'];
+var LY=[
+function(c,W,H,t){var p=W*.06,bh=H*.085;cover(c,0,0,W,H,t);grad(c,H*.3,W,H*.7,'#000000',0,.92);
+ var f=fit(c,D.head,SE,800,W-2*p,H*.4,W*.08,5),top=H-bh-H*.035-f.L.length*f.lh;put(c,f,p,top,'#fff');chip(c,p,top-W*.06-H*.015,D.tag,W*.034,t.a,t.o);
+ c.fillStyle=t.a;c.fillRect(0,H-bh-4,W,5);c.fillStyle='#0d0d10';c.fillRect(0,H-bh,W,bh);foot(c,W,p,H-bh,bh,t,'#fff','#c9c7cc')},
+function(c,W,H,t){var p=W*.06,ih=H*.58,fh=H*.08;c.fillStyle=t.d;c.fillRect(0,0,W,H);cover(c,0,0,W,ih,t);c.fillStyle=t.a;c.fillRect(0,ih,W,H*.012);chip(c,p,ih-W*.03,D.tag,W*.034,t.a,t.o);
+ var top=ih+W*.06,f=fit(c,D.head,SE,800,W-2*p,H-top-fh-H*.03,W*.07,4);put(c,f,p,top,'#fff');foot(c,W,p,H-fh,fh,t,'#fff','#9a9aa2')},
+function(c,W,H,t){var p=W*.07;cover(c,0,0,W,H,t);var g=c.createLinearGradient(0,0,W,0);g.addColorStop(0,rgba(t.d,.95));g.addColorStop(.75,rgba(t.d,.55));g.addColorStop(1,rgba(t.d,.1));c.fillStyle=g;c.fillRect(0,0,W,H);
+ var f=fit(c,D.head,SA,700,W*.7,H*.5,W*.075,6),h=f.L.length*f.lh,top=(H-h)/2;c.fillStyle=t.a;c.fillRect(p,top,W*.014,h);put(c,f,p+W*.04,top,'#fff');chip(c,p,top-W*.075,D.tag,W*.032,t.a,t.o);foot(c,W,p,H-H*.1,H*.07,t,'#fff','rgba(255,255,255,.65)')},
+function(c,W,H,t){var p=W*.05,fh=H*.085;cover(c,0,0,W,H,t);grad(c,H*.4,W,H*.6,'#000000',0,.55);
+ var f=fit(c,D.head,SE,800,W*.8,H*.34,W*.07,4),bh=f.L.length*f.lh+W*.07,by=H-fh-H*.04-bh;c.fillStyle=t.a;c.fillRect(0,by,W*.9,bh);put(c,f,p,by+W*.035,t.o);chip(c,0,by-W*.06,D.tag,W*.034,t.d,'#fff');
+ c.fillStyle=t.d;c.fillRect(0,H-fh,W,fh);foot(c,W,p,H-fh,fh,t,'#fff','#b9b7bd')},
+function(c,W,H,t){cover(c,0,0,W,H,t);c.fillStyle=rgba(t.d,.7);c.fillRect(0,0,W,H);var f=fit(c,D.head,SE,800,W*.8,H*.5,W*.085,6),h=f.L.length*f.lh,top=(H-h)/2;
+ put(c,f,W/2,top,'#fff','center');c.fillStyle=t.a;c.fillRect(W*.4,top-W*.04,W*.2,6);c.fillRect(W*.4,top+h+W*.025,W*.2,6);chip(c,W/2,top-W*.04-W*.085,D.tag,W*.034,t.a,t.o,1);
+ c.textAlign='center';c.font='700 '+W*.036+'px '+SA;c.fillStyle='#fff';c.fillText(D.brand||'',W/2,H-H*.075);c.font='400 '+W*.027+'px '+SA;c.fillStyle='rgba(255,255,255,.7)';c.fillText(meta(),W/2,H-H*.075+W*.045);c.textAlign='left'},
+function(c,W,H,t){var p=W*.06,ph=H*.4,py=H-ph,fh=H*.085;cover(c,0,0,W,H,t);c.fillStyle='#fff';c.fillRect(0,py,W,ph);c.fillStyle=t.a;c.fillRect(0,py,W,H*.014);chip(c,p,py-W*.03,D.tag,W*.034,t.a,t.o);
+ var f=fit(c,D.head,SE,800,W-2*p,ph-fh-W*.08,W*.07,4);put(c,f,p,py+W*.055,'#15151a');c.fillStyle='#e5e2dc';c.fillRect(p,H-fh,W-2*p,2);foot(c,W,p,H-fh,fh,t,'#15151a','#6b6b73')},
+function(c,W,H,t){var p=W*.06,y1=H*.58,y2=H*.46;cover(c,0,0,W,H,t);c.fillStyle=t.a;c.beginPath();c.moveTo(0,y1-H*.03);c.lineTo(W,y2-H*.03);c.lineTo(W,H);c.lineTo(0,H);c.fill();
+ c.fillStyle=t.d;c.beginPath();c.moveTo(0,y1+H*.01);c.lineTo(W,y2+H*.01);c.lineTo(W,H);c.lineTo(0,H);c.fill();chip(c,p,y1-H*.03-W*.075,D.tag,W*.034,t.a,t.o);
+ var top=y1+H*.05,f=fit(c,D.head,SE,800,W-2*p,H-top-H*.1,W*.07,4);put(c,f,p,top,'#fff');foot(c,W,p,H-H*.09,H*.08,t,'#fff','#aaa')},
+function(c,W,H,t){var m=W*.05,ih=H*.6,fh=H*.08;c.fillStyle=t.d;c.fillRect(0,0,W,H);cover(c,m,m,W-2*m,ih,t);c.strokeStyle=t.a;c.lineWidth=W*.008;c.strokeRect(m,m,W-2*m,ih);chip(c,m,m+ih-W*.06,D.tag,W*.032,t.a,t.o);
+ var top=m+ih+W*.04,f=fit(c,D.head,SE,800,W-2*m,H-top-fh-H*.03,W*.065,4);put(c,f,m,top,'#fff');foot(c,W,m,H-fh-H*.015,fh,t,'#fff','#9a9aa2')},
+function(c,W,H,t){var p=W*.06,bar=H*.085;cover(c,0,0,W,H,t);grad(c,H*.35,W,H*.65,'#000000',0,.92);c.fillStyle=t.a;c.fillRect(0,0,W,bar);
+ c.font='700 '+W*.036+'px '+SA;c.fillStyle=t.o;c.fillText(D.tag||'',p,bar/2+W*.013);c.font='400 '+W*.028+'px '+SA;c.textAlign='right';c.fillText(D.date||'',W-p,bar/2+W*.01);c.textAlign='left';
+ var f=fit(c,D.head,SA,700,W-2*p,H*.4,W*.08,5),top=H-H*.1-f.L.length*f.lh;put(c,f,p,top,'#fff');c.fillStyle=t.a;c.fillRect(p,H-H*.085,W*.12,5);
+ c.font='700 '+W*.032+'px '+SA;c.fillStyle='#fff';c.fillText(D.brand||'',p,H-H*.035);c.font='400 '+W*.026+'px '+SA;c.fillStyle='#bbb';c.textAlign='right';c.fillText(D.src||'',W-p,H-H*.035);c.textAlign='left'},
+function(c,W,H,t){var p=W*.05,tk=H*.1;cover(c,0,0,W,H,t);grad(c,H*.4,W,H*.6,'#000000',0,.6);
+ var f=fit(c,D.head,SA,700,W-2*p-W*.03,H*.3,W*.07,4),bh=f.L.length*f.lh+W*.06,by=H-tk-H*.03-bh;c.fillStyle=rgba(t.d,.86);c.fillRect(0,by,W,bh);c.fillStyle=t.a;c.fillRect(0,by,W*.02,bh);put(c,f,p+W*.015,by+W*.03,'#fff');
+ chip(c,p,by-W*.06,D.tag,W*.034,t.a,t.o);c.fillStyle='#fff';c.beginPath();c.arc(p+W*.017,by-W*.03,W*.007,0,7);c.fill();
+ c.fillStyle=t.a;c.fillRect(0,H-tk,W,tk);foot(c,W,p,H-tk,tk,t,t.o,rgba(t.o==='#fff'?'#ffffff':'#000000',.75),t.o)}];
+function rd(){D={head:$('head').value.trim(),tag:$('tag').value.trim(),brand:$('brand').value.trim(),date:$('date').value.trim(),src:$('src').value.trim()}}
+function main(){rd();cx.imageSmoothingQuality='high';var t=TH[cur%5];LY[Math.floor(cur/5)](cx,cv.width,cv.height,t);$('nm').textContent='টেমপ্লেট '+tb(cur+1)+' · '+LN[Math.floor(cur/5)]+' · '+t.n}
+var tm=null,ths=[];
+function thumbs(){rd();ths.forEach(function(b,i){var c=b.firstChild.getContext('2d');c.clearRect(0,0,216,216);c.save();c.scale(.2,.2);LY[Math.floor(i/5)](c,1080,1080,TH[i%5]);c.restore()})}
+function all(){main();clearTimeout(tm);tm=setTimeout(thumbs,250)}
+var gr=$('gr');for(var i=0;i<50;i++){(function(i){var b=document.createElement('button');b.className='t'+(i?'':' on');b.title=LN[Math.floor(i/5)]+' · '+TH[i%5].n;var k=document.createElement('canvas');k.width=k.height=216;b.appendChild(k);
+ b.onclick=function(){cur=i;ths.forEach(function(x){x.classList.remove('on')});b.classList.add('on');main()};gr.appendChild(b);ths.push(b)})(i)}
+var ch=$('ch');['সব'].concat(TH.map(function(t){return t.n})).forEach(function(s,j){var b=document.createElement('button');b.textContent=s;if(!j)b.className='on';
+ b.onclick=function(){flt=j-1;[].forEach.call(ch.children,function(x){x.classList.remove('on')});b.classList.add('on');ths.forEach(function(x,i){x.classList.toggle('h',flt>=0&&i%5!==flt)})};ch.appendChild(b)});
+['head','tag','brand','date','src'].forEach(function(i){$(i).addEventListener('input',all)});
+$('file').onchange=function(e){var f=e.target.files[0];if(!f)return;var im=new Image();im.onload=function(){img=im;$('dz').textContent='✓ '+f.name;all()};im.src=URL.createObjectURL(f)};
+$('sz').onclick=function(e){var b=e.target.closest('button');if(!b)return;[].forEach.call(this.children,function(x){x.classList.remove('on')});b.classList.add('on');cv.width=+b.dataset.w;cv.height=+b.dataset.h;main()};
+$('dl').onclick=function(){main();cv.toBlob(function(bl){var a=document.createElement('a');a.href=URL.createObjectURL(bl);a.download='news-card-'+(cur+1)+'.png';document.body.appendChild(a);a.click();a.remove()})};
+function toast(s){var t=$('ts');t.textContent=s;t.classList.add('on');setTimeout(function(){t.classList.remove('on')},1800)}
+function sl(i,fn){$(i).oninput=function(){fn(+this.value);all()}}
+sl('z',function(v){Z=v/100});sl('px',function(v){PX=v/100});sl('py',function(v){PY=v/100});sl('sc',function(v){SC=v/100});
+$('ff').onclick=function(e){var b=e.target.closest('button');if(!b)return;[].forEach.call(this.children,function(x){x.classList.remove('on')});b.classList.add('on');FF=b.dataset.f||null;all()};
+$('logo').onchange=function(e){var f=e.target.files[0];if(!f)return;var im=new Image();im.onload=function(){logo=im;$('lz').textContent='✓ '+f.name;$('lz').classList.add('ok');all()};im.src=URL.createObjectURL(f)};
+var dz=$('dz');['dragover','drop'].forEach(function(ev){dz.addEventListener(ev,function(e){e.preventDefault();if(ev==='drop'&&e.dataTransfer.files[0]){$('file').files=e.dataTransfer.files;$('file').onchange({target:$('file')})}})});
+var o0=$('file').onchange;$('file').onchange=function(e){o0(e);$('dz').classList.add('ok')};
+$('dl').addEventListener('click',function(){toast('PNG ডাউনলোড শুরু হয়েছে')});
+$('jp').onclick=function(){main();cv.toBlob(function(bl){var a=document.createElement('a');a.href=URL.createObjectURL(bl);a.download='news-card-'+(cur+1)+'.jpg';document.body.appendChild(a);a.click();a.remove();toast('JPG ডাউনলোড শুরু হয়েছে')},'image/jpeg',.95)};
+$('cp').onclick=function(){main();cv.toBlob(function(bl){try{navigator.clipboard.write([new ClipboardItem({'image/png':bl})]).then(function(){toast('ছবি কপি হয়েছে')},function(){toast('কপি করা যায়নি, ডাউনলোড করুন')})}catch(x){toast('এই ব্রাউজারে কপি সাপোর্ট নেই')}})};
+all();Promise.all([document.fonts.load('800 40px "Noto Serif Bengali"','আ'),document.fonts.load('700 30px "Hind Siliguri"','আ'),document.fonts.load('400 30px "Hind Siliguri"','আ')]).then(all).catch(function(){});
 })();
-</script>
-</body>
-</html>
+</script></body></html>
