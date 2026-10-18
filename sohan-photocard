@@ -47,6 +47,8 @@ input[type=range]{width:100%;accent-color:var(--ac)}
 .acts{display:flex;gap:8px}.acts button{font:inherit;font-size:13px;padding:7px 16px;border-radius:8px;border:1px solid var(--ln);background:var(--pn);color:var(--ink);cursor:pointer}.acts button:hover{border-color:var(--ac)}
 .ts{position:fixed;left:50%;bottom:calc(24px + env(safe-area-inset-bottom,0px));transform:translate(-50%,20px);background:#101114;color:#fff;padding:10px 18px;border-radius:99px;font-size:14px;opacity:0;pointer-events:none;transition:.25s;z-index:9}.ts.on{opacity:1;transform:translate(-50%,0)}
 .t{transition:transform .15s}.t:hover{transform:translateY(-2px)}.drop.ok{border-style:solid;border-color:var(--ac);color:var(--ink)}
+.stage{background:var(--ln)}
+@media(max-width:1100px){.pv{position:static}.stage{padding:12px}}
 @media(prefers-reduced-motion:reduce){.t,.ts{transition:none}.t:hover{transform:none}}
 </style></head><body>
 <header><div class="logo">ফ</div><h1>ফটোকার্ড স্টুডিও<small>৫০টি নিউজ টেমপ্লেট</small></h1><button class="btn" id="dl">ডাউনলোড PNG</button></header>
@@ -122,8 +124,8 @@ function main(){rd();cx.imageSmoothingQuality='high';var t=TH[cur%5];LY[Math.flo
 var tm=null,ths=[];
 function thumbs(){rd();ths.forEach(function(b,i){var c=b.firstChild.getContext('2d');c.clearRect(0,0,216,216);c.save();c.scale(.2,.2);LY[Math.floor(i/5)](c,1080,1080,TH[i%5]);c.restore()})}
 function all(){main();clearTimeout(tm);tm=setTimeout(thumbs,250)}
-var gr=$('gr');for(var i=0;i<50;i++){(function(i){var b=document.createElement('button');b.className='t'+(i?'':' on');b.title=LN[Math.floor(i/5)]+' · '+TH[i%5].n;var k=document.createElement('canvas');k.width=k.height=216;b.appendChild(k);
- b.onclick=function(){cur=i;ths.forEach(function(x){x.classList.remove('on')});b.classList.add('on');main()};gr.appendChild(b);ths.push(b)})(i)}
+var gr=$('gr');for(var i=0;i<50;i++){(function(i){var b=document.createElement('button');b.className='t'+(i?'':' on');b.title=LN[Math.floor(i/5)]+' · '+TH[i%5].n;b.setAttribute('aria-label','টেমপ্লেট '+(i+1)+': '+b.title);var k=document.createElement('canvas');k.width=k.height=216;b.appendChild(k);
+ b.onclick=function(){cur=i;ths.forEach(function(x){x.classList.remove('on')});b.classList.add('on');main();if(innerWidth<=1100)$('cv').scrollIntoView({behavior:'smooth',block:'center'})};gr.appendChild(b);ths.push(b)})(i)}
 var ch=$('ch');['সব'].concat(TH.map(function(t){return t.n})).forEach(function(s,j){var b=document.createElement('button');b.textContent=s;if(!j)b.className='on';
  b.onclick=function(){flt=j-1;[].forEach.call(ch.children,function(x){x.classList.remove('on')});b.classList.add('on');ths.forEach(function(x,i){x.classList.toggle('h',flt>=0&&i%5!==flt)})};ch.appendChild(b)});
 ['head','tag','brand','date','src'].forEach(function(i){$(i).addEventListener('input',all)});
